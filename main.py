@@ -105,11 +105,17 @@ def content_contains_keywords_any_lang(content: str,
     return any(k.lower() in content_en for k in keywords)
 
 
-KEYWORDS = ["dryer", "washer"]
-SEARCH_STRING = "Whirlpool"
+KEYWORDS = ["president", "loose", "lost"]
+SEARCH_STRING = "Trump"
 
 load_dotenv()
+load_dotenv("config.env", override=True)
 API_KEY = os.getenv("API_KEY")
+EMAIL_TO = os.getenv("EMAIL_TO")
+EMAIL_SUBJECT = os.getenv("EMAIL_SUBJECT")
+
+if not EMAIL_TO or not EMAIL_SUBJECT:
+    raise RuntimeError("EMAIL_TO or EMAIL_SUBJECT is not set in config.env")
 
 URL = (
     f"https://newsapi.org/v2/everything"
@@ -166,7 +172,7 @@ for article in parsed_json.get("articles", []):
     email_body += "</div>"
 
 send_email(
-    to="desaga@gmail.com",
-    subject="Important news",
+    to=EMAIL_TO,
+    subject=f"{EMAIL_SUBJECT}: {SEARCH_STRING}",
     body_html=email_body
 )
