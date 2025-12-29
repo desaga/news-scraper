@@ -35,8 +35,8 @@ The pipeline is designed to handle:
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/news-digest-email-bot.git
-cd news-digest-email-bot
+git clone https://github.com/desaga/news-scraper
+cd news-scraper
 pip install -r requirements.txt
 ```
 
@@ -45,6 +45,7 @@ pip install -r requirements.txt
 ## Environment Variables
 
 Create a `.env` file in the project root:
+[https://newsapi.org](https://newsapi.org/)
 
 ```env
 API_KEY=your_newsapi_key_here
