@@ -105,8 +105,8 @@ def content_contains_keywords_any_lang(content: str,
     return any(k.lower() in content_en for k in keywords)
 
 
-KEYWORDS = ["president", "loose", "lost"]
-SEARCH_STRING = "Trump"
+SEARCH_STRING = "Ukraine"
+KEYWORDS = ["war", "peace"]
 
 load_dotenv()
 load_dotenv("config.env", override=True)
@@ -131,7 +131,7 @@ headers = {
 response = requests.get(URL, headers=headers)
 parsed_json = response.json()
 
-email_body = "<h2>Important News</h2>"
+email_body = f"<h2>Important News on {SEARCH_STRING} ({KEYWORDS})</h2>"
 
 for article in parsed_json.get("articles", []):
     content = article.get("content", "")
